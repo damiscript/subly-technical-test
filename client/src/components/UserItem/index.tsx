@@ -7,11 +7,11 @@ interface UserItemProps {
 }
 const UserItem = (props: UserItemProps) => {
   return (
-    <div className="user-item grid grid-cols-3">
-      <div className="index">{props.index}</div>
-      <div className="firstName">{props.user.name}</div>
-      <div className="countryOfOrigin">{props.user.country_of_origin}</div>
-    </div>
+    <tr className="user-item">
+      <td className="index">{props.index}</td>
+      <td className="firstName">{props.user.name}</td>
+      <td className="countryOfOrigin">{props.user.country_of_origin}</td>
+    </tr>
   );
 };
 

@@ -1,20 +1,19 @@
 import React from "react";
-import { File } from "../../types";
 
 interface FileItemProps {
   index: Number;
-  file: File;
+  file: any;
 }
 const FileItem = (props: FileItemProps) => {
   return (
-    <div className="file-item grid grid-cols-6 text-left space-x-4">
-      <div className="index">{props.index}</div>
-      <div className="file-name">{props.file.name}</div>
-      <div className="file-uuid">{props.file.uuid}</div>
-      <div className="file-type">.{props.file.type}</div>
-      <div className="file-duration">{props.file.duration} (s)</div>
-      <div className="file-size">{props.file.size} (bytes)</div>
-    </div>
+    <tr className="file-item text-left space-x-4">
+      <td className="index">{props.index}</td>
+      <td className="file-name">{props.file.name}</td>
+      <td className="file-uuid">{props.file.username}</td>
+      <td className="file-type">.{props.file.type}</td>
+      <td className="file-duration">{props.file.duration} (s)</td>
+      <td className="file-size">{props.file.size} (bytes)</td>
+    </tr>
   );
 };
 

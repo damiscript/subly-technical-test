@@ -3,7 +3,10 @@ import MyDropzone from "../../Dropzone";
 import Button from "../../Button";
 import Loader from "../../Loader";
 import { createFile, fetchUsers } from "../../../actions";
+import { useHistory } from "react-router-dom";
+
 const FileCreate = () => {
+  const history = useHistory();
   const [userId, setUserId] = useState(0);
   const [users, setUsers] = useState([]);
   const [file, setFile] = useState({
@@ -61,11 +64,12 @@ const FileCreate = () => {
     <div className="container file-create">
       <h2 className="text-2xl mb-4">Upload a File</h2>
       <form className="flex flex-col space-y-4">
-        <div>
+        <div className="flex items-center space-x-4">
           <label htmlFor="users">Select User:</label>
           <select
             name="users"
             id="users"
+            className="px-2 border-b rounded flex-grow"
             value={userId}
             onChange={e => {
               setUserId(parseInt(e.target.value));
@@ -74,7 +78,6 @@ const FileCreate = () => {
             {renderUsers()}
           </select>
         </div>
-        {userId}
         <MyDropzone setFile={setFile} />
         <Button
           disabled={file.size === 0}
@@ -83,6 +86,7 @@ const FileCreate = () => {
             let fileData = file;
             fileData.uuid = userId;
             createFile(fileData);
+            history.push("/files");
           }}
         >
           Submit

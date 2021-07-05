@@ -4,7 +4,7 @@ interface ReportListProps {
   keys: any;
 }
 const ReportList = ({ items, keys }: ReportListProps) => {
-  if (items === null) {
+  if (!items || items === 500) {
     return <Loader />;
   }
   if (items.length === 0) {

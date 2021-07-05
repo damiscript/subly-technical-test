@@ -10,8 +10,10 @@ const AvgFileDuration = () => {
   useEffect(() => {
     const requestAvgFileDuration = async () => {
       const result = await fetchAverageFileDurationPerUser();
-      setAvgFileDuration(result.avgFileDuration);
-      setAvgFileDurationPerUser(result.avgFileDurationPerUser);
+      if (result) {
+        setAvgFileDuration(result.avgFileDuration);
+        setAvgFileDurationPerUser(result.avgFileDurationPerUser);
+      }
     };
     requestAvgFileDuration();
   }, []);

@@ -10,8 +10,10 @@ const AvgFileSize = () => {
   useEffect(() => {
     const requestAvgFileSize = async () => {
       const result = await fetchAverageFileSizePerUser();
-      setAvgFileSize(result.avgFileSize);
-      setAvgFileSizePerUser(result.avgFileSizePerUser);
+      if (result) {
+        setAvgFileSize(result.avgFileSize);
+        setAvgFileSizePerUser(result.avgFileSizePerUser);
+      }
     };
     requestAvgFileSize();
   }, []);

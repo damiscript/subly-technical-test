@@ -18,7 +18,9 @@ module.exports = {
   },
   fetchAllFiles: async (req, res) => {
     await pool
-      .query("SELECT * FROM files")
+      .query(
+        "SELECT f.uuid, f.name,f.type,f.duration,f.size, u.name as username FROM files AS f LEFT JOIN users AS u ON f.uuid = u.user_id"
+      )
       .then(files => {
         res.json(200, files.rows);
       })

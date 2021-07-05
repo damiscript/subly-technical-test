@@ -1,23 +1,24 @@
 import React from "react";
 import Modal from "../Modal";
+import Button from "../Button";
+import UserCreate from "../Users/UserCreate";
 import DropdownNavigation from "../DropdownNavigation";
 import { Link } from "react-router-dom";
 
 class Header extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = { modalActive: false, modalLink: 0 };
+    this.state = { modalActive: false };
   }
   /** Render the modal when active*/
   renderModal = () => {
     if (this.state.modalActive === false) {
       return null;
     } else {
-      const content = this.state.modalLink === 0 ? "Login" : "Sign Up";
       return (
         <Modal
           title={this.renderModalTitle()}
-          content={content}
+          content={<UserCreate />}
           onDismiss={() => {
             this.setState({ modalActive: false });
           }}
@@ -28,20 +29,10 @@ class Header extends React.Component<any, any> {
   };
   /** Render the title section of the modal*/
   renderModalTitle = () => {
-    const text = this.state.modalLink === 0 ? "Log In" : "Join";
+    const text = "Add User";
     return (
       <div className="w-full py-2">
         <div className="modal-navigation text-base border-b flex pb-2 space-x-2">
-          <button
-            className={`${
-              this.state.modalLink === 0 ? "active text-red-400" : ""
-            } font-semibold`}
-            onClick={() => {
-              this.setState({ modalLink: 0 });
-            }}
-          >
-            Login
-          </button>
           <button
             className={`${
               this.state.modalLink === 1 ? "active text-red-400" : ""
@@ -69,13 +60,13 @@ class Header extends React.Component<any, any> {
             </Link>
           </div>
           {/* Second Column */}
-          <div className="flex header-column space-x-2 items-center">
+          <div className="flex header-column space-x-2 items-center text-base">
+            <Link to="/" className="relative">
+              <p className="text-base">Dashboard</p>
+            </Link>
             <DropdownNavigation
               title="Users"
-              links={[
-                { title: "User List", to: "/users" },
-                { title: "Create Users", to: "/users/add" }
-              ]}
+              links={[{ title: "User List", to: "/users" }]}
             />
             <DropdownNavigation
               title="Files"
@@ -84,22 +75,14 @@ class Header extends React.Component<any, any> {
                 { title: "Add File", to: "/files/add" }
               ]}
             />
-            <button
-              className="text-sm bg-secondary text-black rounded px-2 py-1.5 font-semibold"
-              onClick={() => {
-                this.setState({ modalActive: true, modalLink: 0 });
-              }}
-            >
-              Log In
-            </button>
-            <button
-              className="text-sm bg-red-400 text-black rounded px-2 py-1.5 font-semibold"
+            <Button
+              disabled={false}
               onClick={() => {
                 this.setState({ modalActive: true, modalLink: 1 });
               }}
             >
               Sign Up
-            </button>
+            </Button>
           </div>
         </div>
       </nav>

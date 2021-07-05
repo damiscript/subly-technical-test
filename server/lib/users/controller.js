@@ -2,12 +2,12 @@ const pool = require("../../db");
 
 module.exports = {
   createUser: async (req, res) => {
-    const { firstName, lastName, countryOfOrigin } = req.body;
+    const { name, lastName, countryOfOrigin } = req.body;
     const newUser = await pool
-      .query(
-        "INSERT INTO users (name,last_name,country_of_origin) VALUES($1,$2,$3)",
-        [firstName, lastName, countryOfOrigin]
-      )
+      .query("INSERT INTO users (name,country_of_origin) VALUES($1,$2)", [
+        name,
+        countryOfOrigin
+      ])
       .then(newUser => {
         res.json(200, newUser);
       })
@@ -44,11 +44,11 @@ module.exports = {
   },
   updateUser: async (req, res) => {
     const { id } = req.params;
-    const { firstName, lastName, countryOfOrigin } = req.body;
+    const { name, countryOfOrigin } = req.body;
     await pool
       .query(
-        "UPDATE users SET name = $1, last_name = $2, country_of_origin = $3 WHERE user_id = $4",
-        [firstName, lastName, countryOfOrigin, id]
+        "UPDATE users SET name = $1, country_of_origin = $2 WHERE user_id = $3",
+        [name, countryOfOrigin, id]
       )
       .then(updatedUser => {
         res.json(200, updatedUser.rows);

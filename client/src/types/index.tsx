@@ -1,8 +1,7 @@
 export type User = {
-  user_id: number;
+  user_id: any;
   name: String;
   country_of_origin: String;
-  created_at: String;
 };
 
 export type File = {

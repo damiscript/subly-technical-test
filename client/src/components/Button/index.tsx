@@ -9,7 +9,7 @@ interface ButtonProps {
  */
 const Button = ({ onClick, extraStyle, children, disabled }: ButtonProps) => {
   const disabledStyle = disabled
-    ? "opacity-75 pointer-events-none cursor-none"
+    ? "opacity-75 pointer-events-none cursor-not-allowed"
     : "";
   return (
     <button
@@ -27,6 +27,6 @@ const Button = ({ onClick, extraStyle, children, disabled }: ButtonProps) => {
   );
 };
 Button.defaultProps = {
-  extraStyle: "bg-red-400 text-white"
+  extraStyle: "bg-indigo-600 text-white hover:bg-indigo-900"
 };
 export default Button;

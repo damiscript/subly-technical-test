@@ -76,7 +76,10 @@ class DropdownNavigation extends React.Component<myProps, MyState> {
             this.setOptions(true);
           }}
         >
-          <p className="text-base">{this.props.title}</p>
+          <div className="text-base flex items-center space-x-2">
+            <p>{this.props.title}</p>{" "}
+            <p className="font-semibold pb-1"> &#8964;</p>
+          </div>
         </div>
         {this.renderOptionsMenu()}
       </div>

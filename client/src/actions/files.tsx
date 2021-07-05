@@ -1,5 +1,5 @@
-import { File } from "../types/index";
 import server from "../api/server";
+import { File } from "../types/index";
 
 export const createFile = async (file: File) => {
   await server.post("/files", file).catch(err => {

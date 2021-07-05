@@ -6,7 +6,7 @@ export const fetchFilesPerUser = async () => {
       console.error(err);
       return null;
     });
-  return response.data !== null ? response.data : null;
+  return response && "data" in response ? response.data : null;
 };
 
 export const fetchFilesPerType = async () => {
@@ -16,7 +16,7 @@ export const fetchFilesPerType = async () => {
       console.error(err);
       return null;
     });
-  return response.data !== null ? response.data : null;
+  return response && "data" in response ? response.data : null;
 };
 export const fetchAverageFileSizePerUser = async () => {
   const response: any = await server
@@ -25,7 +25,8 @@ export const fetchAverageFileSizePerUser = async () => {
       console.error(err);
       return null;
     });
-  return response.data !== null ? response.data : null;
+
+  return response && "data" in response ? response.data : null;
 };
 export const fetchAverageFileDurationPerUser = async () => {
   const response: any = await server
@@ -34,5 +35,5 @@ export const fetchAverageFileDurationPerUser = async () => {
       console.error(err);
       return null;
     });
-  return response.data !== null ? response.data : null;
+  return response && "data" in response ? response.data : null;
 };
