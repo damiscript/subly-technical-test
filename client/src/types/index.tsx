@@ -5,3 +5,11 @@ export type User = {
   country_of_origin: String;
   created_at: String;
 };
+
+export type File = {
+  name: String;
+  uuid: number;
+  type: String;
+  duration: number;
+  size: number;
+};
