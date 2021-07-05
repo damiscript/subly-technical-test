@@ -1,13 +1,12 @@
 export type User = {
   user_id: number;
-  first_name: String;
-  last_name: String;
+  name: String;
   country_of_origin: String;
   created_at: String;
 };
 
 export type File = {
-  file_id: number;
+  file_id: any;
   name: String;
   uuid: number;
   type: String;

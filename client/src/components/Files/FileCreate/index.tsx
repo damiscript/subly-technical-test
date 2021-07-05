@@ -6,8 +6,9 @@ const FileCreate = () => {
   const [userId, setUserId] = useState(0);
   const [users, setUsers] = useState([]);
   const [file, setFile] = useState({
+    file_id: -1,
     name: "",
-    uuid: "",
+    uuid: 0,
     type: "",
     duration: 0,
     size: 0
@@ -16,10 +17,11 @@ const FileCreate = () => {
   useEffect(() => {
     const requestUsers = async () => {
       const users: any = await fetchUsers();
-      setUsers(users);
       if (users.length > 0) {
-        setUserId(users[0].id);
+        console.log(users[0].user_id);
+        setUserId(users[0].user_id);
       }
+      setUsers(users);
     };
     requestUsers();
   }, []);
@@ -29,7 +31,7 @@ const FileCreate = () => {
     return users.map((user: any) => {
       return (
         <option value={user.user_id} key={user.user_id}>
-          {user.first_name}
+          {user.name}
         </option>
       );
     });
@@ -43,10 +45,10 @@ const FileCreate = () => {
     }
     return (
       <div className="file-data">
-        <h3 className="text-xl">You have Uploaded!</h3>
+        <h3 className="text-xl">Review File Data</h3>
         <ul>
           <li>Name : {file.name}</li>
-          <li>UUID : {file.uuid}</li>
+          <li>UUID : {userId}</li>
           <li>Type : {file.type}</li>
           <li>Duration : {file.duration}</li>
           <li>Size : {file.size}</li>
@@ -71,13 +73,18 @@ const FileCreate = () => {
             {renderUsers()}
           </select>
         </div>
-        <MyDropzone
-          setFile={(file: any) => {
-            setFile(file);
-            file.uuid = userId;
-            createFile(file);
+        {userId}
+        <MyDropzone setFile={setFile} />
+        <button
+          onClick={e => {
+            e.preventDefault();
+            let fileData = file;
+            fileData.uuid = userId;
+            createFile(fileData);
           }}
-        />
+        >
+          Submit
+        </button>
       </form>
       {renderFileData()}
     </div>

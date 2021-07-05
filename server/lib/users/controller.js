@@ -5,7 +5,7 @@ module.exports = {
     const { firstName, lastName, countryOfOrigin } = req.body;
     const newUser = await pool
       .query(
-        "INSERT INTO users (first_name,last_name,country_of_origin) VALUES($1,$2,$3)",
+        "INSERT INTO users (name,last_name,country_of_origin) VALUES($1,$2,$3)",
         [firstName, lastName, countryOfOrigin]
       )
       .then(newUser => {
@@ -47,7 +47,7 @@ module.exports = {
     const { firstName, lastName, countryOfOrigin } = req.body;
     await pool
       .query(
-        "UPDATE users SET first_name = $1, last_name = $2, country_of_origin = $3 WHERE user_id = $4",
+        "UPDATE users SET name = $1, last_name = $2, country_of_origin = $3 WHERE user_id = $4",
         [firstName, lastName, countryOfOrigin, id]
       )
       .then(updatedUser => {

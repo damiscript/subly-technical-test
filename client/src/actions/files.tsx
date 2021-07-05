@@ -1,4 +1,4 @@
-import { File } from "@babel/types";
+import { File } from "../types/index";
 import server from "../api/server";
 
 export const createFile = async (file: File) => {

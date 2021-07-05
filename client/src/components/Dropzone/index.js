@@ -40,7 +40,6 @@ const MyDropzone = ({ setFile }) => {
         size: 0
       };
       fileData.name = file.name.split(".")[0]; //get only the file name
-      fileData.uuid = 0;
       fileData.size = file.size;
       fileData.type = file.type.split("/")[1]; //the file extension
       fileData.duration = Math.round(duration);

@@ -2,11 +2,11 @@ const pool = require("../../db");
 
 module.exports = {
   createFile: async (req, res) => {
-    const { name, type, duration, size, uuid, userId } = req.body;
+    const { name, type, duration, size, uuid } = req.body;
     const newFile = await pool
       .query(
-        "INSERT INTO files (name, type, duration, size, uuid,user_id ) VALUES($1,$2,$3,$4,$5,$6)",
-        [name, type, duration, size, uuid, userId]
+        "INSERT INTO files (name, type, duration, size, uuid ) VALUES($1,$2,$3,$4,$5)",
+        [name, type, duration, size, uuid]
       )
       .then(newFile => {
         res.json(200, newFile);
