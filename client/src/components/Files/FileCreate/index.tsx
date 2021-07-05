@@ -59,7 +59,7 @@ const FileCreate = () => {
       <h2 className="text-2xl mb-4">Upload a File</h2>
       <form className="flex flex-col space-y-4">
         <div>
-          <label htmlFor="users">Select Users:</label>
+          <label htmlFor="users">Select User:</label>
           <select
             name="users"
             id="users"

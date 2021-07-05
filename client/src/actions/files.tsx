@@ -7,3 +7,11 @@ export const createFile = async (file: File) => {
     return null;
   });
 };
+
+export const fetchFiles = async () => {
+  const response: any = await server.get("/files").catch(err => {
+    console.error(err);
+    return null;
+  });
+  return response.data !== null ? response.data : null;
+};

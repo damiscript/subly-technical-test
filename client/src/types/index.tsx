@@ -7,6 +7,7 @@ export type User = {
 };
 
 export type File = {
+  file_id: number;
   name: String;
   uuid: number;
   type: String;
