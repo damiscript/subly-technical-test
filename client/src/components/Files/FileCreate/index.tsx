@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import MyDropzone from "../../Dropzone";
+import Button from "../../Button";
 import Loader from "../../Loader";
 import { createFile, fetchUsers } from "../../../actions";
 const FileCreate = () => {
@@ -75,8 +76,9 @@ const FileCreate = () => {
         </div>
         {userId}
         <MyDropzone setFile={setFile} />
-        <button
-          onClick={e => {
+        <Button
+          disabled={file.size === 0}
+          onClick={(e: any) => {
             e.preventDefault();
             let fileData = file;
             fileData.uuid = userId;
@@ -84,7 +86,7 @@ const FileCreate = () => {
           }}
         >
           Submit
-        </button>
+        </Button>
       </form>
       {renderFileData()}
     </div>
