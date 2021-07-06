@@ -34,6 +34,7 @@ const UserCreate = () => {
             let user = { user_id: -1, name, countryOfOrigin };
             createUser(user);
             history.push("/users");
+            window.location.reload(false);
           }}
         >
           Submit

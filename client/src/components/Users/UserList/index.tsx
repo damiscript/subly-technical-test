@@ -11,11 +11,11 @@ const UserList: React.FC = () => {
   useEffect(() => {
     const requestUsers = async () => {
       const users: any = await fetchUsers();
+      setFetching(false);
       if (users === 500) {
         return;
       }
       setUsers(users);
-      setFetching(false);
     };
     requestUsers();
   }, []);

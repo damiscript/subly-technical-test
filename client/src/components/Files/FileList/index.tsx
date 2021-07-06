@@ -10,10 +10,10 @@ const FileList: React.FC = () => {
   useEffect(() => {
     const requestFiles = async () => {
       const files: any = await fetchFiles();
+      setFetching(false);
       if (files === 500) {
         return;
       }
-      setFetching(false);
       setFiles(files);
     };
     requestFiles();

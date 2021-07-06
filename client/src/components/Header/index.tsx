@@ -35,7 +35,7 @@ class Header extends React.Component<any, any> {
         <div className="modal-navigation text-base border-b flex pb-2 space-x-2">
           <button
             className={`${
-              this.state.modalLink === 1 ? "active text-red-400" : ""
+              this.state.modalLink === 1 ? "active text-indigo-400" : ""
             } font-semibold`}
             onClick={() => {
               this.setState({ modalLink: 1 });

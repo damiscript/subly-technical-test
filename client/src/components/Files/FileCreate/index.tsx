@@ -21,8 +21,10 @@ const FileCreate = () => {
   useEffect(() => {
     const requestUsers = async () => {
       const users: any = await fetchUsers();
+      if (users === 500) {
+        return;
+      }
       if (users.length > 0) {
-        console.log(users[0].user_id);
         setUserId(users[0].user_id);
       }
       setUsers(users);
@@ -97,6 +99,7 @@ const FileCreate = () => {
             fileData.uuid = userId;
             createFile(fileData);
             history.push("/files");
+            window.location.reload(false);
           }}
         >
           Submit
