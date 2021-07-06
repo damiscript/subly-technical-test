@@ -6,14 +6,17 @@ import ReportList from "../../ReportList";
 
 const FilesPerType = () => {
   const [filesPerType, setFilesPerType] = useState(null);
+  const [fetching, setFetching] = useState(true);
+
   useEffect(() => {
     const requestFilesPerType = async () => {
       const result = await fetchFilesPerType();
       setFilesPerType(result);
+      setFetching(false);
     };
     requestFilesPerType();
   }, []);
-  if (filesPerType === null) {
+  if (fetching) {
     return <Loader />;
   }
   return (

@@ -38,3 +38,8 @@ th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+h1,
+h2 {
+  text-align: center;
+}

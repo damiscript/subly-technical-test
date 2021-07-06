@@ -6,6 +6,7 @@ import { fetchUsers } from "../../../actions";
 
 const UserList: React.FC = () => {
   const [users, setUsers] = useState([]);
+  const [fetching, setFetching] = useState(true);
   //Fetch all users from DB on first load
   useEffect(() => {
     const requestUsers = async () => {
@@ -14,11 +15,20 @@ const UserList: React.FC = () => {
         return;
       }
       setUsers(users);
+      setFetching(false);
     };
     requestUsers();
   }, []);
-  if (!users) {
+  if (fetching) {
     return <Loader />;
+  } else if (users.length === 0) {
+    return (
+      <div>
+        <h2 className="text-center text-2xl font-bold">
+          There are no Users in the database!
+        </h2>
+      </div>
+    );
   }
   const renderUsers = users.map((user: User, index) => {
     return <UserItem key={user.user_id} user={user} index={index + 1} />;

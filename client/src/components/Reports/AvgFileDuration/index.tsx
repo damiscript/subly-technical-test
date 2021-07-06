@@ -7,9 +7,12 @@ import ReportList from "../../ReportList";
 const AvgFileDuration = () => {
   const [avgFileDuration, setAvgFileDuration] = useState(null);
   const [avgFileDurationPerUser, setAvgFileDurationPerUser] = useState(null);
+  const [fetching, setFetching] = useState(true);
+
   useEffect(() => {
     const requestAvgFileDuration = async () => {
       const result = await fetchAverageFileDurationPerUser();
+      setFetching(false);
       if (result) {
         setAvgFileDuration(result.avgFileDuration);
         setAvgFileDurationPerUser(result.avgFileDurationPerUser);
@@ -17,7 +20,7 @@ const AvgFileDuration = () => {
     };
     requestAvgFileDuration();
   }, []);
-  if (avgFileDuration === null) {
+  if (fetching) {
     return <Loader />;
   }
   return (

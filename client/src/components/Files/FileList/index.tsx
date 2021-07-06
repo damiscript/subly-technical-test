@@ -6,18 +6,28 @@ import { fetchFiles } from "../../../actions";
 
 const FileList: React.FC = () => {
   const [files, setFiles] = useState([]);
+  const [fetching, setFetching] = useState(true);
   useEffect(() => {
     const requestFiles = async () => {
       const files: any = await fetchFiles();
       if (files === 500) {
         return;
       }
+      setFetching(false);
       setFiles(files);
     };
     requestFiles();
   }, []);
-  if (!files) {
+  if (fetching) {
     return <Loader />;
+  } else if (files.length === 0) {
+    return (
+      <div>
+        <h2 className="text-center text-2xl font-bold">
+          There are no Files in the database!
+        </h2>
+      </div>
+    );
   }
   const renderFiles = files.map((file: File, index) => {
     return <FileItem key={file.file_id} file={file} index={index + 1} />;

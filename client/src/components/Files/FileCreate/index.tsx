@@ -63,7 +63,17 @@ const FileCreate = () => {
   return (
     <div className="container file-create">
       <h2 className="text-2xl mb-4">Upload a File</h2>
+      <p className="text-center">
+        Impersonate a Registered User and upload a file
+      </p>
       <form className="flex flex-col space-y-4">
+        {users.length === 0 ? (
+          <p>
+            Please ensure there is a user in the database to use this feature
+          </p>
+        ) : (
+          ""
+        )}
         <div className="flex items-center space-x-4">
           <label htmlFor="users">Select User:</label>
           <select
@@ -80,7 +90,7 @@ const FileCreate = () => {
         </div>
         <MyDropzone setFile={setFile} />
         <Button
-          disabled={file.size === 0}
+          disabled={file.size === 0 || users.length === 0}
           onClick={(e: any) => {
             e.preventDefault();
             let fileData = file;

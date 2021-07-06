@@ -6,14 +6,17 @@ import ReportList from "../../ReportList";
 
 const FilesPerUser = () => {
   const [filesPerUser, setFilesPerUser] = useState(null);
+  const [fetching, setFetching] = useState(true);
+
   useEffect(() => {
     const requestFilesPerUser = async () => {
       const result = await fetchFilesPerUser();
       setFilesPerUser(result);
+      setFetching(false);
     };
     requestFilesPerUser();
   }, []);
-  if (filesPerUser === null) {
+  if (fetching) {
     return <Loader />;
   }
   return (

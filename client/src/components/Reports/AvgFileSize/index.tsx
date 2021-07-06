@@ -7,6 +7,7 @@ import ReportList from "../../ReportList";
 const AvgFileSize = () => {
   const [avgFileSize, setAvgFileSize] = useState(null);
   const [avgFileSizePerUser, setAvgFileSizePerUser] = useState(null);
+  const [fetching, setFetching] = useState(true);
   useEffect(() => {
     const requestAvgFileSize = async () => {
       const result = await fetchAverageFileSizePerUser();
@@ -14,10 +15,11 @@ const AvgFileSize = () => {
         setAvgFileSize(result.avgFileSize);
         setAvgFileSizePerUser(result.avgFileSizePerUser);
       }
+      setFetching(false);
     };
     requestAvgFileSize();
   }, []);
-  if (avgFileSize === null) {
+  if (fetching) {
     return <Loader />;
   }
   return (
